@@ -1,8 +1,8 @@
 package netology.java.maven.classes.radio;
 
 public class Radio {
-    public int currentStation; //Номер текущей радиостанции
-    public int currentVolume; //Текущая громкость звука
+    private int currentStation; //Номер текущей радиостанции
+    private int currentVolume; //Текущая громкость звука
 
     public void setCurrentStation(int newCurrentStation) {
         if (newCurrentStation > 9) {
@@ -51,14 +51,14 @@ public class Radio {
         }
     }
 
-    //   такой метод не нужен =)
-    //   public void setCurrentVolume(int newCurrentVolume) {
-    //       if (newCurrentVolume < 0) {
-    //           return;
-    //       }
-    //      if (newCurrentVolume > 10) {
-//            return;
-//        }
-//        currentVolume = newCurrentVolume;
-    //   }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
+               return;
+          }
+         if (newCurrentVolume > 100) {
+           return;
+       }
+      currentVolume = newCurrentVolume;
+    }
 }
