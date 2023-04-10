@@ -3,6 +3,14 @@ package netology.java.maven.classes.radio;
 public class Radio {
     private int currentStation; //Номер текущей радиостанции
     private int currentVolume; //Текущая громкость звука
+    private int stationsAmount = 10; //Количество станций
+
+    public Radio(int stationsAmount) {
+        this.stationsAmount = stationsAmount;
+    }
+
+    public Radio() {
+    }
 
     public void setCurrentStation(int newCurrentStation) {
         if (newCurrentStation > 9) {
