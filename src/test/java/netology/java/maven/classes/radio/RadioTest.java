@@ -21,6 +21,18 @@ public class RadioTest {
 
     @Test
 
+    public void shouldSetCurrentStationIfValid() {
+        radio.setCurrentStation(7);
+
+        int expected = 7;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+
     public void shouldNotSetCurrentStationIfAboveMax() {
         radio.setCurrentStation(10);
 
