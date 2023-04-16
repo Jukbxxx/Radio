@@ -4,10 +4,24 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class RadioTest {
+    Radio radio = new Radio(10);
+
+    @Test
+
+    public void shouldSetCurrentStationIfValidDoubleCheck() {//Дополнительный тест для случая, если станций 20
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(15);
+
+        int expected = 15;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
     @Test
 
     public void shouldSetCurrentStationIfValid() {
-        Radio radio = new Radio();
         radio.setCurrentStation(7);
 
         int expected = 7;
@@ -20,7 +34,6 @@ public class RadioTest {
     @Test
 
     public void shouldNotSetCurrentStationIfAboveMax() {
-        Radio radio = new Radio();
         radio.setCurrentStation(10);
 
         int expected = 0;
@@ -32,7 +45,6 @@ public class RadioTest {
     @Test
 
     public void shouldNotSetCurrentStationIfBelowMin() {
-        Radio radio = new Radio();
         radio.setCurrentStation(-1);
 
         int expected = 0;
@@ -43,7 +55,6 @@ public class RadioTest {
 
     @Test
     public void shouldChangeToNextStation() {
-        Radio radio = new Radio();
         radio.setCurrentStation(3);
         radio.changeToNextStation();
 
@@ -55,8 +66,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldChangeNextToZeroIfNine() {
-        Radio radio = new Radio();
+    public void shouldChangeNextToZeroIfMax() {
         radio.setCurrentStation(9);
         radio.changeToNextStation();
 
@@ -68,7 +78,6 @@ public class RadioTest {
 
     @Test
     public void shouldChangeToPreviousStation() {
-        Radio radio = new Radio();
         radio.setCurrentStation(8);
         radio.changeToPreviousStation();
 
@@ -79,8 +88,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldChangePrevToNineIfZero() {
-        Radio radio = new Radio();
+    public void shouldChangePrevToMaxIfZero() {
         radio.setCurrentStation(0);
         radio.changeToPreviousStation();
 
@@ -92,7 +100,6 @@ public class RadioTest {
 
     @Test
     public void shouldIncreaseVolume() {
-        Radio radio = new Radio();
         radio.setCurrentVolume(1);
         radio.increaseVolume();
 
@@ -104,7 +111,6 @@ public class RadioTest {
 
     @Test
     public void shouldNotIncreaseVolumeIfMax() {
-        Radio radio = new Radio();
         radio.setCurrentVolume(100);
         radio.increaseVolume();
 
@@ -116,7 +122,6 @@ public class RadioTest {
 
     @Test
     public void shouldDecreaseVolume() {
-        Radio radio = new Radio();
         radio.setCurrentVolume(5);
         radio.decreaseVolume();
 
@@ -128,7 +133,6 @@ public class RadioTest {
 
     @Test
     public void shouldNotDecreaseVolumeIfMin() {
-        Radio radio = new Radio();
         radio.decreaseVolume();
 
         int expected = 0;
@@ -139,7 +143,6 @@ public class RadioTest {
 
     @Test
     public void shouldNotSetCurrentVolumeIfBelowMin() {
-        Radio radio = new Radio();
         radio.setCurrentVolume(-1);
 
         Assertions.assertEquals(0, radio.getCurrentVolume());
@@ -147,9 +150,16 @@ public class RadioTest {
 
     @Test
     public void shouldNotSetCurrentVolumeIfAboveMax() {
-        Radio radio = new Radio();
         radio.setCurrentVolume(101);
 
         Assertions.assertEquals(0, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void shouldWorkWithoutStationsAmount() {
+        Radio radio = new Radio(); //Инициируем заново без указания параметра
+        radio.setCurrentStation(9);
+
+        Assertions.assertEquals(9, radio.getCurrentStation());
     }
 }
