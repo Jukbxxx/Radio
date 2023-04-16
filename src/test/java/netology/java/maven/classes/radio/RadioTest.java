@@ -8,10 +8,11 @@ public class RadioTest {
 
     @Test
 
-    public void shouldSetCurrentStationIfValid() {
-        radio.setCurrentStation(7);
+    public void shouldSetCurrentStationIfValidDoubleCheck() {//Дополнительный тест для случая, если станций 20
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(15);
 
-        int expected = 7;
+        int expected = 15;
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -53,7 +54,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldChangeNextToZeroIfNine() {
+    public void shouldChangeNextToZeroIfMax() {
         radio.setCurrentStation(9);
         radio.changeToNextStation();
 
@@ -75,7 +76,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldChangePrevToNineIfZero() {
+    public void shouldChangePrevToMaxIfZero() {
         radio.setCurrentStation(0);
         radio.changeToPreviousStation();
 
@@ -145,8 +146,8 @@ public class RadioTest {
     @Test
     public void shouldWorkWithoutStationsAmount() {
         Radio radio = new Radio(); //Инициируем заново без указания параметра
-        radio.setCurrentStation(10);
+        radio.setCurrentStation(9);
 
-        Assertions.assertEquals(0, radio.getCurrentStation());
+        Assertions.assertEquals(9, radio.getCurrentStation());
     }
 }
